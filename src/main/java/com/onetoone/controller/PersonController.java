@@ -2,6 +2,7 @@ package com.onetoone.controller;
 import com.onetoone.model.PersonRequest;
 import com.onetoone.model.PersonResponse;
 import com.onetoone.service.PersonService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Log4j2
 public class PersonController {
     private final PersonService personService ;
     @Autowired
@@ -40,6 +42,8 @@ public class PersonController {
     @GetMapping(path = "/persons" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PersonRequest>>getAllPerson(){
         List<PersonRequest> allPerson = personService.getAllPerson();
+        log.info("git log");
         return new ResponseEntity<>(allPerson,HttpStatus.OK) ;
     }
+
 }
